@@ -1,6 +1,8 @@
 package com.jefferson.taskmanager.service;
 
+import com.jefferson.taskmanager.dto.TaskRequest;
 import com.jefferson.taskmanager.model.Task;
+import com.jefferson.taskmanager.model.TaskStatus;
 import com.jefferson.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,17 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public void creatTask(Task task){
+    public void createTask(TaskRequest request) {
+        Task task = new Task();
+
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setAssignee(request.getAssignee());
+
+        task.setStatus(TaskStatus.PENDING);
+
         taskRepository.save(task);
+
     }
 
     public List<Task> getAllTasks(){

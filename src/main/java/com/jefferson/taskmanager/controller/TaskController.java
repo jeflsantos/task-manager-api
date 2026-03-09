@@ -1,5 +1,6 @@
 package com.jefferson.taskmanager.controller;
 
+import com.jefferson.taskmanager.dto.TaskRequest;
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.service.TaskService;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class TaskController {
     }
 
     @PostMapping
-    public String creatTask(@RequestBody Task task){
+    public String createTask(@RequestBody TaskRequest request){
 
-        taskService.creatTask(task);
+        taskService.createTask(request);
         return "Tarefa criada com Sucesso!";
     }
 

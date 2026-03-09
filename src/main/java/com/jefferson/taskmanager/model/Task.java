@@ -18,7 +18,7 @@ public class Task {
     private String  assignee;
     private LocalDate startDate;
     private LocalDate dueDate;
-    private String status;
+    private TaskStatus status;
 
     public Long getId(){
         return id;
@@ -62,10 +62,10 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public String getStatus(){
+    public TaskStatus getStatus(){
         return status;
     }
-    public void setStatus(String status){
+    public void setStatus(TaskStatus status){
         this.status = status;
     }
 }
