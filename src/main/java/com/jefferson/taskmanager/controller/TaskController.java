@@ -2,6 +2,7 @@ package com.jefferson.taskmanager.controller;
 
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.service.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +30,14 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable Long id){
-        return taskService.getTaskById(id);
+    public ResponseEntity<Task> getTaskById(@PathVariable Long id){
+        Task task = taskService.getTaskById(id);
+
+        if (task == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(task);
     }
 
     @PutMapping("/{id}")
