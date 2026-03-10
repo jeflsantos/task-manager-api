@@ -34,7 +34,6 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id){
         TaskResponse task = taskService.getTaskById(id);
-
         return ResponseEntity.ok(task);
     }
 
