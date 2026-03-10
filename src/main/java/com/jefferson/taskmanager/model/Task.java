@@ -1,9 +1,6 @@
 package com.jefferson.taskmanager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -18,6 +15,8 @@ public class Task {
     private String  assignee;
     private LocalDate startDate;
     private LocalDate dueDate;
+
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
     public Long getId(){

@@ -1,11 +1,13 @@
 package com.jefferson.taskmanager.service;
 
 import com.jefferson.taskmanager.dto.TaskRequest;
+import com.jefferson.taskmanager.dto.TaskResponse;
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.model.TaskStatus;
 import com.jefferson.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,8 +32,25 @@ public class TaskService {
 
     }
 
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<TaskResponse> getAllTasks(){
+
+        List<Task> tasks = taskRepository.findAll();
+
+        List<TaskResponse> responseList = new ArrayList<>();
+
+        for (Task task : tasks){
+            TaskResponse response = new TaskResponse();
+
+            response.setId(task.getId());
+            response.setTitle(task.getTitle());
+            response.setDescription(task.getDescription());
+            response.setAssignee(task.getAssignee());
+            response.setStatus(task.getStatus());
+
+            responseList.add(response);
+        }
+
+        return responseList;
     }
 
     public Task getTaskById(Long id){

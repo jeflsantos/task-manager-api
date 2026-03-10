@@ -1,6 +1,7 @@
 package com.jefferson.taskmanager.controller;
 
 import com.jefferson.taskmanager.dto.TaskRequest;
+import com.jefferson.taskmanager.dto.TaskResponse;
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.service.TaskService;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getAllTasks(){
+    public List<TaskResponse> getAllTasks(){
         return taskService.getAllTasks();
     }
 
