@@ -4,6 +4,7 @@ import com.jefferson.taskmanager.dto.TaskRequest;
 import com.jefferson.taskmanager.dto.TaskResponse;
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public String createTask(@RequestBody TaskRequest request){
+    public String createTask(@Valid @RequestBody TaskRequest request){
 
         taskService.createTask(request);
         return "Tarefa criada com Sucesso!";

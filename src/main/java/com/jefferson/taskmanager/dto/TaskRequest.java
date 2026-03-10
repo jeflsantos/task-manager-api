@@ -1,10 +1,15 @@
 package com.jefferson.taskmanager.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+
 public class TaskRequest {
 
+    @NotBlank(message = "Title é obrigatório")
     private String title;
+    @NotBlank(message = "Description é obrigatório")
     private String description;
+    @NotBlank(message = "Assignee é obrigatório")
     private String assignee;
 
     public String getTitle (){
