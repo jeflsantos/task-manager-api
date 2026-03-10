@@ -2,6 +2,7 @@ package com.jefferson.taskmanager.service;
 
 import com.jefferson.taskmanager.dto.TaskRequest;
 import com.jefferson.taskmanager.dto.TaskResponse;
+import com.jefferson.taskmanager.exception.TaskNotFoundException;
 import com.jefferson.taskmanager.model.Task;
 import com.jefferson.taskmanager.model.TaskStatus;
 import com.jefferson.taskmanager.repository.TaskRepository;
@@ -53,8 +54,18 @@ public class TaskService {
         return responseList;
     }
 
-    public Task getTaskById(Long id){
-        return taskRepository.findById(id).orElse(null);
+    public TaskResponse getTaskById(Long id){
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
+
+        TaskResponse response = new TaskResponse();
+
+        response.setId(task.getId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        response.setAssignee(task.getAssignee());
+        response.setStatus(task.getStatus());
+
+        return response;
     }
 
     public Task updateTask(Long id, Task updatedTask){
